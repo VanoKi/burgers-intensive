@@ -42,7 +42,7 @@ body {
 
 .button {
   border-radius: 8px;
-  background: linear-gradient(135.00deg, rgb(218, 128, 35), rgb(226, 180, 56) 100%);
+  background: linear-gradient(135deg, #da8023 0%, #e2b438 100%);
   width: 260px;
   height: 62px;
   padding: 19px;
@@ -53,12 +53,12 @@ body {
   border: 0;
   cursor: pointer;
   outline: none;
-  color: rgb(25, 20, 17);
+  color: #191411;
   font-size: 18px;
 }
 
 .button:hover {
-  background: linear-gradient(135.00deg, rgb(218, 128, 35), rgb(226, 180, 56) 100%);
+  background: linear-gradient(135deg, #ac6115 0%, #9e7a19 100%);
 }
 
 .common-title {

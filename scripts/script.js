@@ -42,3 +42,23 @@ document.getElementById('order-action').onclick = function () {
     }
 
 }
+
+let prices = document.getElementsByClassName('products-item-price')
+document.getElementById('change-currency').onclick = function (e) {
+    let currentCurrency = e.target.innerText;
+    let newCurrency = '$';
+    let coefficient = 1;
+    if (currentCurrency === '$') {
+        newCurrency = '₽';
+        coefficient = 92;
+    } else if (currentCurrency === '₽'){
+        newCurrency = 'BYN';
+        coefficient = 3.236;
+    }
+    e.target.innerText = newCurrency;
+    for (let i = 0; i < prices.length; i++) {
+        prices[i].innerText = +(prices[i]
+            .getAttribute('data-base-price') * coefficient)
+            .toFixed(1) + ' ' + newCurrency;
+    }
+}

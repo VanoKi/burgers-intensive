@@ -54,7 +54,14 @@ document.getElementById('change-currency').onclick = function (e) {
     } else if (currentCurrency === '₽'){
         newCurrency = 'BYN';
         coefficient = 3.236;
+    } else if (currentCurrency === 'BYN'){
+        newCurrency = '€';
+        coefficient = 0.93;
+    } else if (currentCurrency === '€'){
+        newCurrency = '¥';
+        coefficient = 7.19;
     }
+
     e.target.innerText = newCurrency;
     for (let i = 0; i < prices.length; i++) {
         prices[i].innerText = +(prices[i]
@@ -62,3 +69,8 @@ document.getElementById('change-currency').onclick = function (e) {
             .toFixed(1) + ' ' + newCurrency;
     }
 }
+
+// fetch( 'https://belarusbank.by/api/kursExchange')
+//     .then(response => response.json()) // Декодируем ответ в формате json
+//     .then(data => console.log(data));
+

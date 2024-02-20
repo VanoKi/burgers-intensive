@@ -12,7 +12,7 @@ import {NgForOf} from "@angular/common";
 })
 export class AppComponent {
 
-  currency = '$'
+  currency = "$"
 
   form = this.fb.group({
     order: ["", Validators.required],
@@ -121,8 +121,11 @@ export class AppComponent {
 
   constructor(private fb: FormBuilder) {
   }
-  scrollTo(target: HTMLElement) {
+  scrollTo(target: HTMLElement, burger?: any) {
     target.scrollIntoView({behavior:'smooth'})
+    if (burger) {
+      this.form.patchValue({order: burger.title + ' (' + burger.price + ' ' + this.currency + ')'});
+    }
   }
 
   confirmOrder() {
@@ -132,7 +135,26 @@ export class AppComponent {
   }
 
   changeCurrency() {
+    let newCurrency = '$';
+    let coefficient = 1;
+    if (this.currency === '$') {
+      newCurrency = '₽';
+      coefficient = 80;
+    } else if (this.currency === '₽'){
+      newCurrency = 'BYN';
+      coefficient = 3;
+    } else if (this.currency === 'BYN'){
+      newCurrency = '€';
+      coefficient = 0.9;
+    } else if (this.currency === '€'){
+      newCurrency = '¥';
+      coefficient = 7;
+    }
 
+    this.currency = newCurrency;
+    this.productsData.forEach((item: any) => {
+      item.price = +(item.baseprice * coefficient).toFixed(1);
+    })
   }
 
 }

@@ -90,11 +90,11 @@
         </div>
         <div class="products-item-extra">
           <div class="products-item-info">
-            <div class="products-item-price">{{products.price}} $</div>
+            <div class="products-item-price">{{products.price}} {{currency}}</div>
             <div class="products-item-weight">{{products.grams}}</div>
           </div>
           <div class="products-item-action">
-            <button class="button product-button" (click)="scrollTo(order)">
+            <button class="button product-button" (click)="scrollTo(order, products)">
               <span>Заказать</span>
               <span>
                 <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -121,7 +121,11 @@
       </div>
       <div class="order-form-inputs" [formGroup]="form">
         <div class="order-form-input" [class]="{'error': form.get('order')?.invalid && (form.get('order')?.dirty || form.get('order')?.touched) }">
-          <input type="text" placeholder="Ваш Заказ" id="burger" formControlName="order">
+          <input type="text"
+                 placeholder="Выберите товар в списке"
+                 id="burger"
+                 formControlName="order"
+                 readonly>
         </div>
         <div class="order-form-input" [class]="{'error': form.get('name')?.invalid && (form.get('name')?.dirty || form.get('name')?.touched) }">
           <input type="text" placeholder="Вашу Имя" id="name" formControlName="name">
@@ -129,7 +133,10 @@
         <div class="order-form-input" [class]="{'error': form.get('phone')?.invalid && (form.get('phone')?.dirty || form.get('phone')?.touched) }">
           <input type="text" placeholder="Ваш Телефон" id="phone" formControlName="phone">
         </div>
-        <button class="button" id="order-action" (click)="confirmOrder()" [disabled]="!form.valid">
+        <button class="button"
+                id="order-action"
+                (click)="confirmOrder()"
+                [disabled]="!form.valid">
           Оформить заказ
         </button>
       </div>
